@@ -13,7 +13,7 @@ const MOCK_RESPONSE: Recommendation = {
 
 export async function submitQuestionnaire(formData: FormData): Promise<Recommendation> {
   try {
-     const response = await fetch('/api/recommend', {
+     const response = await fetch('https://tradar-api.onrender.com/recommend', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
