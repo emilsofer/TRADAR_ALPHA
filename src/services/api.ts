@@ -13,22 +13,19 @@ const MOCK_RESPONSE: Recommendation = {
 
 export async function submitQuestionnaire(formData: FormData): Promise<Recommendation> {
   try {
-    // For development, we'll use a mock response
-    // In production, uncomment the fetch code below
+     const response = await fetch('/api/recommend', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify(formData),
+     });
     
-    // const response = await fetch('/api/recommend', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // });
+     if (!response.ok) {
+       throw new Error('API request failed');
+     }
     
-    // if (!response.ok) {
-    //   throw new Error('API request failed');
-    // }
-    
-    // return await response.json();
+    return await response.json();
     
     // Mock response with a slight delay to simulate API call
     return new Promise((resolve) => {
