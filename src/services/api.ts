@@ -1,5 +1,6 @@
 
 import { FormData, Recommendation } from "../types";
+import { saveUserResponse } from "../firebase"; // ודא שהנתיב נכון
 
 // Mock API response for development
 const MOCK_RESPONSE: Recommendation = {
@@ -25,7 +26,9 @@ export async function submitQuestionnaire(formData: FormData): Promise<Recommend
        throw new Error('API request failed');
      }
     
-    return await response.json();
+     const result = await response.json();
+     await saveUserResponse(formData, result, null); // שליחה לפיירסטור
+     return result;
     
     // Mock response with a slight delay to simulate API call
     return new Promise((resolve) => {
